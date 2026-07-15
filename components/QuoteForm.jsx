@@ -92,7 +92,7 @@ export function QuoteForm() {
       </div>
       <div className="full"><label>Anything else</label><textarea name="message" placeholder="Timeline, quantity, questions…" /></div>
       <div className="full">
-        <button className="btn accent" type="submit" disabled={status === "busy"}>Request the quote</button>{" "}
+        <button className="btn cta" type="submit" disabled={status === "busy"}>Request the quote</button>{" "}
         <span className={"form-msg " + (status === "ok" ? "ok" : status === "err" ? "err" : "")}>
           {status === "ok" && "Received. We reply within one business day."}
           {status === "err" && `Something failed — email us at ${CONFIG.CONTACT_EMAIL}.`}
@@ -122,7 +122,7 @@ export function PricelistForm() {
   return (
     <form className="pricelist" onSubmit={onSubmit}>
       <input type="email" name="email" required placeholder="work email" />
-      <button className="btn accent" type="submit" disabled={status === "busy"}>Send the price list</button>
+      <button className="btn cta" type="submit" disabled={status === "busy"}>Send the price list</button>
       <span className={"form-msg " + (status === "ok" ? "ok" : status === "err" ? "err" : "")}>
         {status === "ok" && "Sent — check your inbox shortly."}
         {status === "err" && "Something failed — try again."}

@@ -1,7 +1,11 @@
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Diagram from "@/components/Diagram";
+import ProductGallery from "@/components/ProductGallery";
+import BuyBox from "@/components/BuyBox";
+import ProductCard from "@/components/ProductCard";
+import Badge from "@/components/Badge";
+import Rating from "@/components/Rating";
 import { ROBOTS, getRobot } from "@/lib/robots";
 
 export function generateStaticParams() {
@@ -17,7 +21,7 @@ export async function generateMetadata({ params }) {
 export default async function RobotPage({ params }) {
   const { slug } = await params;
   const r = getRobot(slug);
-  const quoteHref = `/?robot=${r.slug}#quote`;
+  const related = ROBOTS.filter((x) => x.slug !== r.slug);
   const ld = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -38,67 +42,83 @@ export default async function RobotPage({ params }) {
       <Header />
 
       <div className="wrap crumbs">
-        <Link href="/">Lineup</Link> / {r.maker.replace(" Robotics", "").replace(" Dynamics", "")} / {r.name.split(" ").slice(-1)}
+        <Link href="/">All platforms</Link> › <Link href={`/?q=${encodeURIComponent(r.maker)}#catalog`}>{r.maker}</Link> › {r.name}
       </div>
 
-      <section className="product-head">
-        <div className="wrap grid">
-          <div>
-            <span className="kicker">{r.kicker}</span>
-            <h1>{r.name}</h1>
-            <p className="lede" style={{ marginTop: 20 }}>{r.lede}</p>
-            <div className="usecases">
-              {r.useCases.map(([t, body]) => (
-                <div className="usecase" key={t}><b>{t}</b>{body}</div>
-              ))}
-            </div>
-          </div>
-          <div className="pricebox">
-            <div className="p">{r.price}</div>
-            <div className="note">{r.priceNote}</div>
-            <Link className="btn accent" href={quoteHref}>Request a {r.name.split(" ").slice(-1)} quote</Link>
-            <ul>
-              {r.priceboxBullets.map((b) => (
-                <li key={b}>{b}</li>
-              ))}
-            </ul>
-          </div>
+      <div className="wrap pdp-title">
+        <Link className="maker" href={`/?q=${encodeURIComponent(r.maker)}#catalog`}>{r.maker}</Link>
+        <h1>{r.name}</h1>
+        <div className="subline">
+          <Rating rating={r.rating} count={r.reviewCount} />
+          {r.badges.map((b) => (
+            <Badge key={b} tone={b.startsWith("CE") ? "ok" : undefined}>{b}</Badge>
+          ))}
+          {r.chips.map((c) => (
+            <Badge key={c} tone="chip">{c}</Badge>
+          ))}
         </div>
-      </section>
+      </div>
 
-      <section className="rule">
-        <div className="wrap spec-grid">
-          <div className="diagram">
-            <Diagram d={r.diagram} name={r.name} />
-            <div className="cap"><span>{r.name} — side elevation</span><span>schematic</span></div>
-          </div>
-          <div>
-            <span className="kicker">Specifications</span>
-            <h2>Datasheet</h2>
-            <table className="specs" style={{ marginTop: 24 }}>
-              <tbody>
-                {r.specs.map(([k, v]) => (
-                  <tr key={k}>
-                    <td>{k}</td>
-                    <td className={k === "Indicative price" ? "mono" : undefined}>{v}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      <div className="wrap pdp">
+        <div>
+          <ProductGallery r={r} />
+          <p className="lede" style={{ fontSize: 15.5, color: "var(--ink-soft)", marginTop: 18, maxWidth: "70ch" }}>{r.lede}</p>
+          <ul className="benefits">
+            <li><b>{r.proof}.</b></li>
+            {r.useCases.map(([t, body]) => (
+              <li key={t}><b>{t}:</b> {body}</li>
+            ))}
+          </ul>
         </div>
-      </section>
+        <BuyBox r={r} />
+      </div>
 
-      <section className="rule">
+      <section style={{ paddingTop: 6 }}>
         <div className="wrap">
-          <span className="kicker">Buying in EMEA</span>
-          <h2 style={{ marginBottom: 24 }}>{r.name.split(" ").slice(-1)} — common questions</h2>
+          <div className="sec-head">
+            <h2>Technical specifications</h2>
+          </div>
+          <table className="specs">
+            <tbody>
+              {r.specs.map(([k, v]) => (
+                <tr key={k}>
+                  <td>{k}</td>
+                  <td className={k === "Indicative price" ? "mono" : undefined}>{v}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section style={{ paddingTop: 6 }}>
+        <div className="wrap">
+          <div className="sec-head">
+            <h2>Buying the {r.name.split(" ").slice(-1)} in EMEA</h2>
+          </div>
           <div className="faq">
             {r.faq.map(([q, a]) => (
               <details key={q}>
                 <summary>{q}</summary>
                 <p>{a}</p>
               </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="related">
+        <div className="wrap">
+          <div className="sec-head">
+            <div>
+              <h2>Related platforms</h2>
+              <p className="sub">Same channel, same one-day quote — different budgets and jobs.</p>
+            </div>
+            <Link className="btn" href="/#catalog">View all</Link>
+          </div>
+          <div className="grid-products">
+            {related.map((x) => (
+              <ProductCard r={x} key={x.slug} />
             ))}
           </div>
         </div>

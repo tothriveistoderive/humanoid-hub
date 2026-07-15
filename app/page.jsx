@@ -1,9 +1,7 @@
-import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import LineupRow from "@/components/LineupRow";
+import CatalogGrid from "@/components/CatalogGrid";
 import { QuoteForm, PricelistForm } from "@/components/QuoteForm";
-import { ROBOTS } from "@/lib/robots";
 
 export default function Home() {
   return (
@@ -11,78 +9,56 @@ export default function Home() {
       <Header />
 
       <section className="hero">
-        <div className="wrap grid">
-          <div>
-            <span className="kicker">EMEA sales channel — humanoid robotics</span>
-            <h1>Humanoid robots from China&apos;s leading labs. Quoted, shipped, and supported in EMEA.</h1>
-            <p className="lede" style={{ marginTop: 24 }}>
-              We represent select Chinese humanoid manufacturers across Europe, the Middle East
-              and Africa. Published specs, indicative prices, and a formal quote within one
-              business day — without navigating overseas procurement yourself.
-            </p>
-            <div className="cta-row">
-              <a className="btn accent" href="#quote">Request a quote</a>
-              <a className="btn ghost" href="#lineup">View the lineup</a>
-            </div>
-          </div>
-          <div className="facts">
-            <div><b>5 platforms</b> — from $5,000 to $54,000</div>
-            <div><b>3 manufacturers</b> — EngineAI · Booster · LimX</div>
-            <div><b>1 business day</b> — from inquiry to formal quote</div>
-            <div><b>CE documentation</b> — verified before every EU delivery</div>
+        <div className="wrap">
+          <h1>Humanoid robots, quoted and delivered in EMEA.</h1>
+          <p className="lede">
+            Real platforms from EngineAI, Booster Robotics and LimX Dynamics — published specs,
+            visible prices, and a formal quote within one business day. Browse like a store,
+            buy like an institution.
+          </p>
+          <div className="statstrip">
+            <span><b>5</b> platforms</span>
+            <span><b>$5,000 – $54,000</b> indicative range</span>
+            <span><b>3</b> manufacturers, officially represented</span>
+            <span className="ok">CE-documented EU delivery</span>
+            <span><b>1 business day</b> to a formal quote</span>
           </div>
         </div>
       </section>
 
-      <section className="rule" id="lineup">
+      <section style={{ paddingTop: 0 }}>
         <div className="wrap">
-          <div className="sec-head">
-            <div>
-              <span className="kicker">Current lineup</span>
-              <h2>Five platforms, one inquiry away</h2>
-            </div>
-            <a className="btn ghost" href="#quote">Get pricing for your use case</a>
-          </div>
-          <table className="lineup">
-            <thead>
-              <tr><th>Model</th><th className="hide-m">Class</th><th className="hide-m">Best for</th><th>Indicative price</th></tr>
-            </thead>
-            <tbody>
-              {ROBOTS.map((r) => (
-                <LineupRow r={r} key={r.slug} />
-              ))}
-            </tbody>
-          </table>
-          <p style={{ fontFamily: "var(--mono)", fontSize: 12, color: "var(--ink-faint)", marginTop: 12 }}>
-            Prices are manufacturer-indicative, ex-works, before shipping and duties. Formal
-            quotes reflect configuration, freight and your destination country.
+          <CatalogGrid />
+          <p className="muted" style={{ fontFamily: "var(--mono)", fontSize: 12, marginTop: 12 }}>
+            Prices are manufacturer-indicative, ex-works, before shipping and duties. Your formal
+            quote itemizes configuration, freight and your destination country — no surprises at customs.
           </p>
         </div>
       </section>
 
-      <section className="rule" id="process">
+      <section id="process" style={{ background: "var(--bg-subtle)" }}>
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <span className="kicker">How it works</span>
-              <h2>Procurement without the overseas guesswork</h2>
+              <h2>How buying works</h2>
+              <p className="sub">No overseas procurement guesswork — we broker, you receive.</p>
             </div>
           </div>
-          <div className="steps">
-            <div className="step">
-              <span className="num">01 — Inquiry</span>
+          <div className="tiles">
+            <div className="tile">
+              <span className="num">STEP 01 — INQUIRY</span>
               <h3>Tell us the use case</h3>
-              <p>Research, education, a pilot line, an exhibition. We confirm which platform fits and what configuration you actually need.</p>
+              <p>Research, education, a pilot line, an exhibition. We confirm which platform fits and the configuration you actually need.</p>
             </div>
-            <div className="step">
-              <span className="num">02 — Quote</span>
+            <div className="tile">
+              <span className="num">STEP 02 — QUOTE</span>
               <h3>Formal quote in one business day</h3>
-              <p>Price, lead time, shipping to your country, and the CE / compliance documentation status for EU destinations.</p>
+              <p>Price, lead time, shipping to your country, and CE / compliance documentation status for EU destinations.</p>
             </div>
-            <div className="step">
-              <span className="num">03 — Delivery</span>
+            <div className="tile">
+              <span className="num">STEP 03 — DELIVERY</span>
               <h3>We manage the order through</h3>
-              <p>Payment terms via our entity, factory coordination, freight and customs paperwork — through to delivery and onboarding support.</p>
+              <p>Payment terms via our entity, factory coordination, freight and customs paperwork — through to delivery and onboarding.</p>
             </div>
           </div>
         </div>
@@ -91,7 +67,6 @@ export default function Home() {
       <div className="band" id="pricelist">
         <div className="wrap grid">
           <div>
-            <span className="kicker" style={{ color: "#6d727c" }}>Price list</span>
             <h2>The full EMEA price list, in your inbox</h2>
             <p>
               Manufacturers rarely publish prices. We do. Current indicative pricing for every
@@ -105,17 +80,17 @@ export default function Home() {
 
       <section id="quote">
         <div className="wrap quote-wrap">
-          <div>
-            <span className="kicker">Request a quote</span>
-            <h2>Tell us what you&apos;re building</h2>
-            <p className="lede" style={{ fontSize: 16, marginTop: 16 }}>
-              One form, one business day. We come back with a formal quote — price,
-              configuration, lead time, and delivery to your country.
+          <div className="quote-side">
+            <h2>Request a quote</h2>
+            <p className="lede" style={{ fontSize: 15, marginTop: 8 }}>
+              One form, one business day, a formal itemized quote.
             </p>
-            <p style={{ fontFamily: "var(--mono)", fontSize: 13, color: "var(--ink-faint)", marginTop: 24 }}>
-              Universities and public institutions: we&apos;re used to procurement paperwork.
-              Ask for what you need.
-            </p>
+            <div style={{ marginTop: 14 }}>
+              <div className="point"><span className="ok">✓</span><span><b>Universities &amp; public institutions:</b> POs, vendor forms and approval timelines are fine.</span></div>
+              <div className="point"><span className="ok">✓</span><span><b>CE documentation</b> verified before any EU delivery is promised.</span></div>
+              <div className="point"><span className="ok">✓</span><span><b>Not sure which platform?</b> Say so — right-sizing first orders is the job.</span></div>
+              <div className="point"><span className="ok">✓</span><span><b>Openly commercial:</b> we represent these brands and earn on brokered sales.</span></div>
+            </div>
           </div>
           <QuoteForm />
         </div>
