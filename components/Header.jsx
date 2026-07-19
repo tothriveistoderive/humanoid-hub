@@ -62,7 +62,7 @@ export default function Header() {
         </div>
       </nav>
       <div className="truststrip">
-        We officially represent <b>EngineAI · Booster Robotics · LimX Dynamics</b> —{" "}
+        Independent EMEA sales channel for <b>EngineAI · Booster Robotics · LimX Dynamics</b> platforms —{" "}
         <span className="ok">CE-documented EMEA delivery</span> · formal quote within one business day
       </div>
     </header>

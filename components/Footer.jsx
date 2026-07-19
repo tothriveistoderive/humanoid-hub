@@ -32,7 +32,7 @@ export default function Footer() {
       </div>
       <div className="legal">
         <div className="wrap">
-          {CONFIG.BRAND_NAME} is a commercial sales representative for the manufacturers shown on this
+          {CONFIG.BRAND_NAME} is an independent sales channel for the platforms shown on this
           site. We earn fees and commissions on referred and brokered sales — that&apos;s the business,
           openly. We are not a neutral review publication. © 2026 {CONFIG.BRAND_NAME} · EMEA
         </div>

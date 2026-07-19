@@ -19,7 +19,7 @@ export default function Home() {
           <div className="statstrip">
             <span><b>5</b> platforms</span>
             <span><b>$5,000 – $54,000</b> indicative range</span>
-            <span><b>3</b> manufacturers, officially represented</span>
+            <span><b>3</b> manufacturers featured</span>
             <span className="ok">CE-documented EU delivery</span>
             <span><b>1 business day</b> to a formal quote</span>
           </div>
