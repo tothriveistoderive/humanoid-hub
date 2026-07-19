@@ -70,7 +70,7 @@ export default function Home() {
             <h2>The full EMEA price list, in your inbox</h2>
             <p>
               Manufacturers rarely publish prices. We do. Current indicative pricing for every
-              platform we represent — models, configurations, and typical shipping ranges to EU
+              platform we represent — models and configurations, sent personally within one business day to EU
               and Gulf destinations.
             </p>
           </div>

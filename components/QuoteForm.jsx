@@ -124,7 +124,7 @@ export function PricelistForm() {
       <input type="email" name="email" required placeholder="work email" />
       <button className="btn cta" type="submit" disabled={status === "busy"}>Send the price list</button>
       <span className={"form-msg " + (status === "ok" ? "ok" : status === "err" ? "err" : "")}>
-        {status === "ok" && "Sent — check your inbox shortly."}
+        {status === "ok" && "Received — the price list lands in your inbox within one business day."}
         {status === "err" && "Something failed — try again."}
       </span>
     </form>
