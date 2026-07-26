@@ -62,7 +62,7 @@ export default function Header() {
         </div>
       </nav>
       <div className="truststrip">
-        Independent EMEA sales channel for <b>EngineAI · Booster Robotics · LimX Dynamics</b> platforms —{" "}
+        Independent EMEA sales channel for <b>Ironvale Robotics · Halcyon Robotics · Vantage Dynamics</b> platforms —{" "}
         <span className="ok">CE-documented EMEA delivery</span> · formal quote within one business day
       </div>
     </header>
