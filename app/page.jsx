@@ -12,7 +12,7 @@ export default function Home() {
         <div className="wrap">
           <h1>Humanoid robots, quoted and delivered in EMEA.</h1>
           <p className="lede">
-            Real platforms from EngineAI, Booster Robotics and LimX Dynamics — published specs,
+            Platforms from Ironvale Robotics, Halcyon Robotics and Vantage Dynamics — published specs,
             visible prices, and a formal quote within one business day. Browse like a store,
             buy like an institution.
           </p>

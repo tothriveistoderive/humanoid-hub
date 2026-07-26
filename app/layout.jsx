@@ -16,7 +16,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata = {
   title: "Buy Humanoid Robots in Europe & the Middle East | Humanoid Hub",
   description:
-    "Sales channel for Chinese humanoid robots in Europe, the Middle East and Africa. EngineAI, Booster Robotics, LimX Dynamics — specs, indicative prices, and quotes within one business day.",
+    "Sales channel for Chinese humanoid robots in Europe, the Middle East and Africa. Ironvale Robotics, Halcyon Robotics, Vantage Dynamics — specs, indicative prices, and quotes within one business day.",
 };
 
 export default function RootLayout({ children }) {
