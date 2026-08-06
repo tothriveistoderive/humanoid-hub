@@ -22,6 +22,7 @@ export default function ProductGallery({ r }) {
             type="button"
             className={"thumb" + (active === i ? " on" : "")}
             onClick={() => setActive(i)}
+            aria-pressed={active === i}
             aria-label={src ? `${r.name} photo ${i}` : `${r.name} technical schematic`}
           >
             {src ? <img src={`${BASE}${src}`} alt="" /> : <span>spec<br />view</span>}
@@ -40,7 +41,7 @@ export default function ProductGallery({ r }) {
           <Diagram d={r.diagram} name={r.name} />
         )}
       </div>
-      <div className="caption">
+      <div className="caption" role="status" aria-live="polite">
         <span>{r.name} — {slots[active] ? "product photo" : "side elevation, schematic"}</span>
         <span>{r.cls}</span>
       </div>

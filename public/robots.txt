@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tothriveistoderive.github.io/humanoid-hub/sitemap.xml

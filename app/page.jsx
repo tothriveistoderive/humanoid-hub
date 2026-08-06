@@ -1,12 +1,15 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CatalogGrid from "@/components/CatalogGrid";
+import HashScroll from "@/components/HashScroll";
 import { QuoteForm, PricelistForm } from "@/components/QuoteForm";
 
 export default function Home() {
   return (
     <>
       <Header />
+      <HashScroll />
+      <main id="main">
 
       <section className="hero">
         <div className="wrap">
@@ -96,6 +99,7 @@ export default function Home() {
         </div>
       </section>
 
+      </main>
       <Footer />
     </>
   );

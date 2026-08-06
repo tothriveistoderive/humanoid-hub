@@ -47,13 +47,19 @@ export default function CatalogGrid() {
       <div className="toolbar">
         <div className="chips" role="group" aria-label="Filter by use case">
           {CATS.map((c) => (
-            <button key={c} type="button" className={cat === c ? "on" : ""} onClick={() => setCat(c)}>
+            <button
+              key={c}
+              type="button"
+              className={cat === c ? "on" : ""}
+              aria-pressed={cat === c}
+              onClick={() => setCat(c)}
+            >
               {catLabel(c)}
             </button>
           ))}
         </div>
         <div className="spacer" />
-        <span className="count">
+        <span className="count" role="status" aria-live="polite">
           {list.length} platform{list.length === 1 ? "" : "s"}
           {q ? ` for “${q}”` : ""}
         </span>

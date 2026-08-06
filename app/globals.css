@@ -69,8 +69,9 @@ h3 { font-size: 16px; font-weight: 700; }
   display: flex; align-items: center; gap: 16px; height: 60px;
   max-width: var(--max); margin: 0 auto; padding: 0 20px;
 }
-.brand { color: #fff; text-decoration: none; font-weight: 800; font-size: 19px; letter-spacing: -0.01em; white-space: nowrap; display: flex; align-items: baseline; gap: 7px; }
+.brand { color: #fff; text-decoration: none; font-weight: 800; font-size: 19px; letter-spacing: -0.01em; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
 .brand .tag { font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--cta); letter-spacing: .12em; }
+.brandmark { flex-shrink: 0; color: #fff; }
 .searchbox { flex: 1; display: flex; max-width: 640px; }
 .searchbox input {
   flex: 1; min-width: 0; border: none; padding: 10px 14px; font-size: 14px;
@@ -210,7 +211,8 @@ form.quote {
 form.quote .full { grid-column: 1 / -1; }
 form.quote label { font-size: 12.5px; font-weight: 600; display: block; margin-bottom: 4px; }
 form.quote input, form.quote select, form.quote textarea {
-  width: 100%; padding: 10px 12px; font-size: 14.5px; font-family: var(--sans);
+  width: 100%; padding: 11px 12px; font-size: 16px; font-family: var(--sans);
+  min-height: 44px;
   border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 6px;
 }
 form.quote textarea { resize: vertical; min-height: 88px; }
@@ -298,6 +300,8 @@ footer.site .legal {
   font-size: 12.5px; color: #9aa4b0;
 }
 footer.site .legal .wrap { max-width: 880px; }
+footer.site .legal a { display: inline; padding: 0; color: #c7cdd4; text-decoration: underline; font-size: inherit; }
+footer.site .legal a:hover { color: #fff; }
 
 /* responsive */
 @media (max-width: 960px) {
@@ -309,7 +313,10 @@ footer.site .legal .wrap { max-width: 880px; }
 @media (max-width: 640px) {
   .topnav .bar { flex-wrap: wrap; height: auto; padding: 10px 14px; gap: 10px; }
   .searchbox { order: 3; flex-basis: 100%; max-width: none; }
-  .grid-products { grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 10px; }
+  /* 165px needed 340px of content width, so 375px and 390px phones fell back to
+     a single column and the page ran ~30% longer than on a 414px phone. */
+  .grid-products { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .pcard .shot { aspect-ratio: 4 / 3; }
   .pcard .shot { padding: 12px 12px 6px; }
   .pcard .p { font-size: 20px; }
   .tiles { grid-template-columns: 1fr; }
@@ -318,4 +325,46 @@ footer.site .legal .wrap { max-width: 880px; }
   .gallery .caption { grid-column: 1; }
   .hero { padding: 22px 0 14px; }
   form.quote { grid-template-columns: 1fr; padding: 16px; }
+}
+
+/* ── accessibility & mobile fixes (2026-08-06 QA pass) ───────────────────── */
+
+/* Keyboard users had to tab past ~30 elements to reach the quote form. */
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--nav-2); color: #fff; padding: 10px 16px;
+  border-radius: 0 0 6px 0; font-size: 14px; font-weight: 600; text-decoration: none;
+}
+.skip-link:focus { left: 0; }
+
+/* Visible to screen readers only. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Honeypot: off-screen rather than display:none, which some bots detect. */
+.hp-field {
+  position: absolute; left: -9999px; top: auto;
+  width: 1px; height: 1px; overflow: hidden;
+}
+
+/* The category bar scrolls horizontally but iOS hides the scrollbar, so
+   "Full price list" and "How buying works" looked like they didn't exist. */
+.chipbar { position: relative; }
+.chipbar::after {
+  content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 32px;
+  pointer-events: none;
+  background: linear-gradient(to right, rgba(19,25,33,0), var(--nav-2));
+}
+
+/* 44px touch targets (Apple HIG / WCAG 2.5.5). */
+.pricelist input, .pricelist button, .searchbox input, .searchbox button {
+  min-height: 44px; font-size: 16px;
+}
+.chipbar a, .chipbar button { padding: 9px 12px; }
+
+@media (max-width: 640px) {
+  .wrap { padding-left: 14px; padding-right: 14px; }
+  form.quote input, form.quote select, form.quote textarea { font-size: 16px; }
 }

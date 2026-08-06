@@ -16,9 +16,9 @@ export default function ProductCard({ r }) {
         )}
       </div>
       <div className="body">
-        <div className="title">
+        <h3 className="title">
           <Link href={`/robots/${r.slug}/`}>{r.name}</Link>
-        </div>
+        </h3>
         <div className="maker">{r.maker}</div>
         <div className="cls">{r.cls}</div>
         <div className="pricerow">

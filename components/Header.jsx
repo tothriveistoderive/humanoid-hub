@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import LogoMark from "./LogoMark";
 
 const CATS = ["All", "Education", "Research", "Competition", "Content"];
 const catLabel = (c) => (c === "Content" ? "Content & events" : c);
@@ -25,9 +26,11 @@ export default function Header() {
 
   return (
     <header>
+      <a className="skip-link" href="#main">Skip to main content</a>
       <div className="topnav">
         <div className="bar">
           <Link className="brand" href="/">
+            <LogoMark className="brandmark" size={22} />
             Humanoid Hub <span className="tag">EMEA</span>
           </Link>
           <form

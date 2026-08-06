@@ -15,7 +15,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const r = getRobot(slug);
-  return { title: r.meta.title, description: r.meta.description };
+  return {
+    title: r.meta.title,
+    description: r.meta.description,
+    alternates: { canonical: `/robots/${slug}/` },
+  };
 }
 
 export default async function RobotPage({ params }) {
@@ -40,6 +44,7 @@ export default async function RobotPage({ params }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <Header />
+      <main id="main">
 
       <div className="wrap crumbs">
         <Link href="/">All platforms</Link> › <Link href={`/?q=${encodeURIComponent(r.maker)}#catalog`}>{r.maker}</Link> › {r.name}
@@ -124,6 +129,7 @@ export default async function RobotPage({ params }) {
         </div>
       </section>
 
+      </main>
       <Footer />
     </>
   );

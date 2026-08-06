@@ -35,6 +35,10 @@ export default function Footer() {
           {CONFIG.BRAND_NAME} is an independent sales channel for the platforms shown on this
           site. We earn fees and commissions on referred and brokered sales — that&apos;s the business,
           openly. We are not a neutral review publication. © 2026 {CONFIG.BRAND_NAME} · EMEA
+          {" · "}
+          <Link href="/privacy">Privacy</Link>
+          {" · "}
+          <Link href="/terms">Terms</Link>
         </div>
       </div>
     </footer>
