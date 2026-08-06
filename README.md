@@ -3,6 +3,7 @@
 Next.js (static export) showcase for Chinese humanoid robots, sold into EMEA.
 Placeholder brand name — swap `BRAND_NAME` in `lib/config.js` when the real name lands.
 
+
 ## Stack
 
 - **Next.js 15** App Router, `output: "export"` — pure static, no server
